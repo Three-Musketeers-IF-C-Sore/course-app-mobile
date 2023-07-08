@@ -1,3 +1,4 @@
+import 'package:bp/providers/enrolled_course_provider.dart';
 import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/screens/discover_screen.dart';
 import 'package:bp/screens/setting_screen.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeModeProvider()),
+        ChangeNotifierProvider(create: (context) => EnrolledCourseProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

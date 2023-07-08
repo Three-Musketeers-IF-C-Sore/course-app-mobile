@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bp/screens/course_detail_screen.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -70,13 +71,13 @@ class _DiscoverPageState extends State<DiscoverPage> {
     return Scaffold(
       backgroundColor: setting.backgroundColor,
       appBar: AppBar(
-        title: const Text('Setting'),
+        title: const Text('Courses'),
         centerTitle: true,
         backgroundColor: $primary500,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,11 +98,11 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   ),
                   hintText: "Search courses, instructor, or keyword",
                   labelText: "Search courses, instructor, or keyword",
-                  hintStyle: TextStyle(color: setting.textColor),
-                  labelStyle: TextStyle(color: setting.textColor),
-                  prefixIcon: Icon(Icons.search, size: 30, color: setting.textColor,),
+                  hintStyle: const TextStyle(color: $black),
+                  labelStyle: TextStyle(color: $black),
+                  prefixIcon: const Icon(Icons.search, size: 30, color: $black,),
                   suffixIcon: IconButton(
-                    icon: FaIcon(FontAwesomeIcons.circleXmark, color: setting.textColor,),
+                    icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
                     onPressed: () {
                       _searchController.clear();
                       setState(() {
@@ -120,61 +121,72 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
                 ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: recommend.length,
                   separatorBuilder: (context, index) {
                     return const Padding(padding: EdgeInsets.only(top: 10));
                   },
                   itemBuilder: (context, index) {
-                    return Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/images/${recommend[index]["image"]}', width: 100,),
-                        const Padding(padding: EdgeInsets.only(left: 10)),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              width: currentWidth*0.5,
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(recommend[index]["title"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: setting.textColor),))
-                            ),
-                            Text(recommend[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                            Text(recommend[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                            Row(children: [
-                              if((recommend[index]["rating"]).round() == recommend[index]["rating"])...[
-                                for(int i=0; i<recommend[index]["rating"]; i++) ...[
-                                  const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                    return GestureDetector(
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CourseDetailPage(id: recommend[index]['id'], image: recommend[index]['image'], title: recommend[index]['title'], university: recommend[index]['university'], instructor: recommend[index]['instructor'], description: recommend[index]['description'], chapter: recommend[index]['chapter'],rating: recommend[index]['rating']))),
+                      child: Card(
+                        color: $white,
+                        shadowColor: $black,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset('assets/images/${recommend[index]["image"]}', width: 100, height: 75,),
+                              const Padding(padding: EdgeInsets.only(left: 10)),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    width: currentWidth*0.5,
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(recommend[index]["title"], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: $black),))
+                                  ),
+                                  Text(recommend[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                  Text(recommend[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                  Row(children: [
+                                    if((recommend[index]["rating"]).round() == recommend[index]["rating"])...[
+                                      for(int i=0; i<recommend[index]["rating"]; i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      for(int i=0; i<5-recommend[index]["rating"]; i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ] else if((recommend[index]["rating"]).round() > (recommend[index]["rating"])) ... [
+                                      for(int i=0; i<(recommend[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      const Icon(Icons.star_half_rounded, color: Colors.yellow,),
+                                      for(int i=0; i<5-(recommend[index]["rating"]).round(); i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ] else if((recommend[index]["rating"]).round() < (recommend[index]["rating"]))...[
+                                      for(int i=0; i<(recommend[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      for(int i=0; i<5-(recommend[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ],                  
+                                    Text("(${recommend[index]['rating']})", style: TextStyle(color: setting.textColor),),
+                                  ],),
                                 ],
-                                for(int i=0; i<5-recommend[index]["rating"]; i++) ...[
-                                  const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                ],
-                              ] else if((recommend[index]["rating"]).round() > (recommend[index]["rating"])) ... [
-                                for(int i=0; i<(recommend[index]["rating"]).floor(); i++) ...[
-                                  const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                ],
-                                const Icon(Icons.star_half_rounded, color: Colors.yellow,),
-                                for(int i=0; i<5-(recommend[index]["rating"]).round(); i++) ...[
-                                  const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                ],
-                              ] else if((recommend[index]["rating"]).round() < (recommend[index]["rating"]))...[
-                                for(int i=0; i<(recommend[index]["rating"]).floor(); i++) ...[
-                                  const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                ],
-                                for(int i=0; i<5-(recommend[index]["rating"]).floor(); i++) ...[
-                                  const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                ],
-                              ],                  
-                              Text("(${recommend[index]['rating']})", style: TextStyle(color: setting.textColor),),
-                            ],),
-                          ],
-                        )
-                      ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     );
                   },
                 )
@@ -185,57 +197,61 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
                 ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: courses.length,
                   separatorBuilder: (context, index) {
                     return const Padding(padding: EdgeInsets.only(top: 10));
                   },
                   itemBuilder: (context, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/images/${courses[index]["image"]}', width: 100,),
-                        const Padding(padding: EdgeInsets.only(left: 10)),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: currentWidth*0.5,
-                              child: FittedBox(child: Text(courses[index]["title"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: setting.textColor),),)
-                            ),  
-                            Text(courses[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                            Text(courses[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                            Row(children: [
-                              if((courses[index]["rating"]).round() == courses[index]["rating"])...[
-                                for(int i=0; i<courses[index]["rating"]; i++) ...[
-                                  const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                ],
-                                for(int i=0; i<5-courses[index]["rating"]; i++) ...[
-                                  const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                ],
-                              ] else if((courses[index]["rating"]).round() > (courses[index]["rating"])) ... [
-                                for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
-                                  const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                ],
-                                const Icon(Icons.star_half_rounded, color: Colors.yellow,),
-                                for(int i=0; i<5-(courses[index]["rating"]).round(); i++) ...[
-                                  const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                ],
-                              ] else if((courses[index]["rating"]).round() < (courses[index]["rating"]))...[
-                                for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
-                                  const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                ],
-                                for(int i=0; i<5-(courses[index]["rating"]).floor(); i++) ...[
-                                  const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                ],
-                              ],                  
-                              Text("(${courses[index]['rating']})", style: TextStyle(color: setting.textColor),),
-                            ],),
-                          ],
-                        )
-                      ],
+                    return GestureDetector(
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CourseDetailPage(id: courses[index]['id'], image: courses[index]['image'], title: courses[index]['title'], university: courses[index]['university'], instructor: courses[index]['instructor'], description: courses[index]['description'], chapter: courses[index]['chapter'],rating: courses[index]['rating']))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset('assets/images/${courses[index]["image"]}', width: 100,),
+                          const Padding(padding: EdgeInsets.only(left: 10)),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: currentWidth*0.5,
+                                child: FittedBox(child: Text(courses[index]["title"], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: $black),),)
+                              ),  
+                              Text(courses[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                              Text(courses[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                              Row(children: [
+                                if((courses[index]["rating"]).round() == courses[index]["rating"])...[
+                                  for(int i=0; i<courses[index]["rating"]; i++) ...[
+                                    const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                  ],
+                                  for(int i=0; i<5-courses[index]["rating"]; i++) ...[
+                                    const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                  ],
+                                ] else if((courses[index]["rating"]).round() > (courses[index]["rating"])) ... [
+                                  for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
+                                    const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                  ],
+                                  const Icon(Icons.star_half_rounded, color: Colors.yellow,),
+                                  for(int i=0; i<5-(courses[index]["rating"]).round(); i++) ...[
+                                    const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                  ],
+                                ] else if((courses[index]["rating"]).round() < (courses[index]["rating"]))...[
+                                  for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
+                                    const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                  ],
+                                  for(int i=0; i<5-(courses[index]["rating"]).floor(); i++) ...[
+                                    const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                  ],
+                                ],                  
+                                Text("(${courses[index]['rating']})", style: const TextStyle(color: $black),),
+                              ],),
+                            ],
+                          )
+                        ],
+                      ),
                     );
                   },
                 )
@@ -266,57 +282,61 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     ),
                     const Padding(padding: EdgeInsets.only(top: 10)),
                     ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: related.length,
                       separatorBuilder: (context, index) {
                         return const Padding(padding: EdgeInsets.only(top: 10));
                       },
                       itemBuilder: (context, index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset('assets/images/${related[index]["image"]}', width: 100,),
-                            const Padding(padding: EdgeInsets.only(left: 10)),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: currentWidth*0.5,
-                                  child: FittedBox(child: Text(related[index]["title"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: setting.textColor),),)
-                                ), 
-                                Text(related[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                                Text(related[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                                Row(children: [
-                                  if((related[index]["rating"]).round() == related[index]["rating"])...[
-                                    for(int i=0; i<related[index]["rating"]; i++) ...[
-                                      const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                    ],
-                                    for(int i=0; i<5-related[index]["rating"]; i++) ...[
-                                      const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                    ],
-                                  ] else if((related[index]["rating"]).round() > (related[index]["rating"])) ... [
-                                    for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
-                                      const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                    ],
-                                    const Icon(Icons.star_half_rounded, color: Colors.yellow,),
-                                    for(int i=0; i<5-(related[index]["rating"]).round(); i++) ...[
-                                      const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                    ],
-                                  ] else if((related[index]["rating"]).round() < (related[index]["rating"]))...[
-                                    for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
-                                      const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                    ],
-                                    for(int i=0; i<5-(related[index]["rating"]).floor(); i++) ...[
-                                      const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                    ],
-                                  ],                  
-                                  Text("(${related[index]['rating']})", style: TextStyle(color: setting.textColor),),
-                                ],),
-                              ],
-                            )
-                          ],
+                        return GestureDetector(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CourseDetailPage(id: related[index]['id'], image: related[index]['image'], title: related[index]['title'], university: related[index]['university'], instructor: related[index]['instructor'], description: related[index]['description'], chapter: related[index]['chapter'],rating: related[index]['rating']))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset('assets/images/${related[index]["image"]}', width: 100,),
+                              const Padding(padding: EdgeInsets.only(left: 10)),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: currentWidth*0.5,
+                                    child: FittedBox(child: Text(related[index]["title"], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: $black),),)
+                                  ), 
+                                  Text(related[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                  Text(related[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                  Row(children: [
+                                    if((related[index]["rating"]).round() == related[index]["rating"])...[
+                                      for(int i=0; i<related[index]["rating"]; i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      for(int i=0; i<5-related[index]["rating"]; i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ] else if((related[index]["rating"]).round() > (related[index]["rating"])) ... [
+                                      for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      const Icon(Icons.star_half_rounded, color: Colors.yellow,),
+                                      for(int i=0; i<5-(related[index]["rating"]).round(); i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ] else if((related[index]["rating"]).round() < (related[index]["rating"]))...[
+                                      for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      for(int i=0; i<5-(related[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ],                  
+                                    Text("(${related[index]['rating']})", style: const TextStyle(color: $black),),
+                                  ],),
+                                ],
+                              )
+                            ],
+                          ),
                         );
                       },
                     )

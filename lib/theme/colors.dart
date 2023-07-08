@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
  
-const Color $primary500 = Color.fromRGBO(91, 80, 216, 1.0);
-const Color $primary300 = Color.fromRGBO(130, 122, 225, 1.0);
+const Color $primary800 = Color.fromRGBO(50, 38, 79, 1.0);
+const Color $primary500 = Color.fromRGBO(103, 80, 164, 1.0);
+const Color $primary300 = Color.fromRGBO(232, 222, 248, 1.0);
 const Color $primary200 = Color.fromRGBO(243, 237, 247, 1.0);
 const Color $secondary500 = Color.fromRGBO(83, 177, 118, 1.0);
 const Color $tertiary300 = Color.fromRGBO(161, 161, 161, 1.0);

@@ -5,6 +5,8 @@
         "title": "Data Structure and Algorithm",
         "university": "University of Waterloo",
         "instructor": "Prof. John",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae rem dolore nam doloribus accusantium mollitia maxime quidem ab odit, provident vitae ducimus sequi dicta? Corrupti, nemo ad quos, voluptatum officia error maxime exercitationem, dignissimos sapiente fuga qui porro accusantium temporibus dolorem distinctio iure. \n\nFugit veritatis alias corporis quidem eaque eius deleniti soluta? Saepe vel architecto enim eum facere placeat itaque? Officiis cum totam nobis.",
+        "chapter": 5,
         "rating": 2.3
     },
     {
@@ -13,6 +15,8 @@
         "title": "Database and Query",
         "university": "University of Mikroskil",
         "instructor": "Prof. David",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae rem dolore nam doloribus accusantium mollitia maxime quidem ab odit, provident vitae ducimus sequi dicta? Corrupti, nemo ad quos, voluptatum officia error maxime exercitationem, dignissimos sapiente fuga qui porro accusantium temporibus dolorem distinctio iure. \n\nFugit veritatis alias corporis quidem eaque eius deleniti soluta? Saepe vel architecto enim eum facere placeat itaque? Officiis cum totam nobis.",
+        "chapter": 8,
         "rating": 2.6
     },
     {
@@ -21,6 +25,8 @@
         "title": "Binary Search Algorithm",
         "university": "University of Waterloo",
         "instructor": "Prof. Kevin",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae rem dolore nam doloribus accusantium mollitia maxime quidem ab odit, provident vitae ducimus sequi dicta? Corrupti, nemo ad quos, voluptatum officia error maxime exercitationem, dignissimos sapiente fuga qui porro accusantium temporibus dolorem distinctio iure. \n\nFugit veritatis alias corporis quidem eaque eius deleniti soluta? Saepe vel architecto enim eum facere placeat itaque? Officiis cum totam nobis.",
+        "chapter": 7,
         "rating": 3.7
     },
     {
@@ -29,6 +35,8 @@
         "title": "Data Science",
         "university": "University of Waterloo",
         "instructor": "Prof. Kevin",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae rem dolore nam doloribus accusantium mollitia maxime quidem ab odit, provident vitae ducimus sequi dicta? Corrupti, nemo ad quos, voluptatum officia error maxime exercitationem, dignissimos sapiente fuga qui porro accusantium temporibus dolorem distinctio iure. \n\nFugit veritatis alias corporis quidem eaque eius deleniti soluta? Saepe vel architecto enim eum facere placeat itaque? Officiis cum totam nobis.",
+        "chapter": 8,
         "rating": 3.4
     },
     {
@@ -37,6 +45,8 @@
         "title": "Competitive Programming",
         "university": "University of Mikroskil",
         "instructor": "Prof. Andi",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae rem dolore nam doloribus accusantium mollitia maxime quidem ab odit, provident vitae ducimus sequi dicta? Corrupti, nemo ad quos, voluptatum officia error maxime exercitationem, dignissimos sapiente fuga qui porro accusantium temporibus dolorem distinctio iure. \n\nFugit veritatis alias corporis quidem eaque eius deleniti soluta? Saepe vel architecto enim eum facere placeat itaque? Officiis cum totam nobis.",
+        "chapter": 10,
         "rating": 5
     }
 ]
