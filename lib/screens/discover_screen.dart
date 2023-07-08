@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/theme/colors.dart';
-import 'package:bp/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +15,8 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
-  TextEditingController _searchController = TextEditingController();
-  FocusNode _textFieldFocus = FocusNode();
+  final TextEditingController _searchController = TextEditingController();
+  final FocusNode _textFieldFocus = FocusNode();
   Color _color = $primary200;
 
   List allcourses = [];
