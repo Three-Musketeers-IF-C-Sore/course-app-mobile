@@ -1,4 +1,5 @@
 import 'package:bp/providers/theme_mode_provider.dart';
+import 'package:bp/screens/discover_screen.dart';
 import 'package:bp/screens/setting_screen.dart';
 import 'package:bp/theme/colors.dart';
 import 'package:bp/theme/typography.dart';
@@ -64,6 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingPage()));
               }, 
               child: const Text('Setting'),
+            ),
+            // Temporary button to discover page
+            TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const DiscoverPage()));
+              }, 
+              child: const Text('Discover Page'),
             )
           ],
         ),

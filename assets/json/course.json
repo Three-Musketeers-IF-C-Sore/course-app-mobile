@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "image": "dataStructure.jpg",
+        "title": "Data Structure and Algorithm",
+        "university": "University of Waterloo",
+        "instructor": "Prof. John",
+        "rating": 2.3
+    },
+    {
+        "id": 1,
+        "image": "database&query.png",
+        "title": "Database and Query",
+        "university": "University of Mikroskil",
+        "instructor": "Prof. David",
+        "rating": 2.6
+    },
+    {
+        "id": 2,
+        "image": "binarySearch.png",
+        "title": "Binary Search Algorithm",
+        "university": "University of Waterloo",
+        "instructor": "Prof. Kevin",
+        "rating": 3.7
+    },
+    {
+        "id": 3,
+        "image": "dataScience.jpeg",
+        "title": "Data Science",
+        "university": "University of Waterloo",
+        "instructor": "Prof. Kevin",
+        "rating": 3.4
+    },
+    {
+        "id": 4,
+        "image": "cp.jpeg",
+        "title": "Competitive Programming",
+        "university": "University of Mikroskil",
+        "instructor": "Prof. Andi",
+        "rating": 5
+    }
+]
