@@ -1,8 +1,7 @@
-import 'package:bp/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class EnrolledCourseProvider extends ChangeNotifier {
-  List _enrolledCourseId = [];
+  final List _enrolledCourseId = [];
   List get enrolledCourseId => _enrolledCourseId;
 
   void enrolledCourse(int id) {

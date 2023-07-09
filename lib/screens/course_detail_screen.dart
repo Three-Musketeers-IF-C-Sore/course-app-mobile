@@ -1,5 +1,6 @@
 import 'package:bp/providers/enrolled_course_provider.dart';
 import 'package:bp/providers/theme_mode_provider.dart';
+import 'package:bp/screens/chapter_detail_screen.dart';
 import 'package:bp/theme/colors.dart';
 import 'package:bp/theme/typography.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +97,21 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                     ),
                     title: Text("Chapter ${index+1}", style: TextStyle(color: setting.textColor),),
                     trailing: IconButton(
-                      onPressed: null,
+                      onPressed: enrolledCourseProvider.isEnrolled(widget.id) ? () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChapterDetailPage(image: widget.image, title: widget.title, chapter: index)))
+                      : () {ScaffoldMessenger.of(context).showMaterialBanner(
+                            MaterialBanner(
+                            backgroundColor: setting.textColor,
+                            content: Text('You need to enroll first!', style: TextStyle(color: setting.isDarkMode ? $black : $white),),
+                            actions: [
+                              IconButton(
+                                icon: Icon(Icons.close, color: setting.isDarkMode ? $black : $white,),
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+                                }
+                              ),
+                            ],
+                          ));
+                        },
                       icon: Icon(Icons.arrow_right, color: setting.textColor,),
                     ),
                   );

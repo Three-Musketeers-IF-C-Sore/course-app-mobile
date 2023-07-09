@@ -99,7 +99,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   hintText: "Search courses, instructor, or keyword",
                   labelText: "Search courses, instructor, or keyword",
                   hintStyle: const TextStyle(color: $black),
-                  labelStyle: TextStyle(color: $black),
+                  labelStyle: const TextStyle(color: $black),
                   prefixIcon: const Icon(Icons.search, size: 30, color: $black,),
                   suffixIcon: IconButton(
                     icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
