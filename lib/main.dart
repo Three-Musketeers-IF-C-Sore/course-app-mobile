@@ -1,6 +1,7 @@
 import 'package:bp/providers/enrolled_course_provider.dart';
 import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/screens/discover_screen.dart';
+import 'package:bp/screens/login_screen.dart';
 import 'package:bp/screens/setting_screen.dart';
 import 'package:bp/theme/colors.dart';
 import 'package:bp/theme/typography.dart';
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-            primarySwatch: Colors.blue,
-            unselectedWidgetColor: Colors.white,
-          ),
+          primarySwatch: Colors.blue,
+          unselectedWidgetColor: Colors.white,
+        ),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );
@@ -57,23 +58,32 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: $heading5Regular.copyWith(color: setting.textColor),
-            ),
             // Temporary button to setting page
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingPage()));
-              }, 
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingPage()));
+              },
               child: const Text('Setting'),
             ),
             // Temporary button to discover page
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const DiscoverPage()));
-              }, 
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DiscoverPage()));
+              },
               child: const Text('Discover Page'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
+              },
+              child: const Text('Login Page'),
             )
           ],
         ),
