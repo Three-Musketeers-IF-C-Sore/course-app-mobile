@@ -8,6 +8,8 @@ import 'package:bp/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/about_us_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -84,6 +86,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (context) => const LoginPage()));
               },
               child: const Text('Login Page'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AboutUsPage()));
+              },
+              child: const Text('About Us'),
             )
           ],
         ),

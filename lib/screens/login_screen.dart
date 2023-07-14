@@ -23,6 +23,23 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  bool isLoginButtonEnabled() {
+    final email = _email.text;
+    final password = _password.text;
+    return email.isNotEmpty && password.isNotEmpty;
+  }
+
+  void onLoginButtonPressed(BuildContext context) {
+    if (isLoginButtonEnabled()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MyHomePage(title: ''),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,8 +139,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: 40,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>($primary500),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      $primary500,
+                    ),
                     foregroundColor:
                         MaterialStateProperty.all<Color>(Colors.white),
                     shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -132,14 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyHomePage(title: ''),
-                      ),
-                    );
-                  },
+                  onPressed: () => onLoginButtonPressed(context),
                   child: const Text('Login'),
                 ),
               ),

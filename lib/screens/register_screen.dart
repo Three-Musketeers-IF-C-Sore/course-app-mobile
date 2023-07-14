@@ -18,6 +18,41 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _password = TextEditingController();
   TextEditingController _name = TextEditingController();
   TextEditingController _confirmpassword = TextEditingController();
+
+  void dispose() {
+    _email.dispose();
+    super.dispose();
+    _password.dispose();
+    super.dispose();
+    _name.dispose();
+    super.dispose();
+    _confirmpassword.dispose();
+    super.dispose();
+  }
+
+  bool isRegisterButtonEnabled() {
+    final name = _name.text;
+    final email = _email.text;
+    final password = _password.text;
+    final confirmPassword = _confirmpassword.text;
+
+    return name.isNotEmpty &&
+        email.isNotEmpty &&
+        password.isNotEmpty &&
+        confirmPassword.isNotEmpty;
+  }
+
+  void onRegisterButtonPressed(BuildContext context) {
+    if (isRegisterButtonEnabled()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,8 +210,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 40,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>($primary500),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      $primary500,
+                    ),
                     foregroundColor:
                         MaterialStateProperty.all<Color>(Colors.white),
                     shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -185,14 +221,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
-                    );
-                  },
+                  onPressed: () => onRegisterButtonPressed(context),
                   child: const Text('Register'),
                 ),
               ),
