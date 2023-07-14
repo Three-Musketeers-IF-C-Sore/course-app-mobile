@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/about_us_screen.dart';
+import 'screens/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -95,6 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (context) => const AboutUsPage()));
               },
               child: const Text('About Us'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()));
+              },
+              child: const Text('Profile'),
             )
           ],
         ),

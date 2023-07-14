@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: "Login",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color:
                           $primary500, // Change the color to your desired color
                     ),
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: "Password",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color:
                           $primary500, // Change the color to your desired color
                     ),
@@ -169,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                     shape: MaterialStateProperty.all<OutlinedBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: $primary500,
                           width: 1,
                         ),
