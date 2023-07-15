@@ -44,24 +44,25 @@ class _ProfilePageState extends State<ProfilePage> {
     return Padding(
         padding: const EdgeInsets.only(left: 0),
         child: SizedBox(
-          width: 150,
-          child: Column(
+          width: 300,
+          child: Row(
             children: [
               Expanded(
-                child: Center(
-                    child: Text(
+                child: Text(
                   userProfileProvider.firstName,
-                  textAlign: TextAlign.justify,
-                  style: $heading3Regular,
-                )),
+                  textAlign: TextAlign.right,
+                  style: $heading4Regular,
+                ),
+              ),
+              const SizedBox(
+                width: 5,
               ),
               Expanded(
-                child: Center(
-                    child: Text(
+                child: Text(
                   userProfileProvider.lastName,
-                  textAlign: TextAlign.justify,
-                  style: $heading3Regular,
-                )),
+                  textAlign: TextAlign.left,
+                  style: $heading4Regular,
+                ),
               ),
             ],
           ),
