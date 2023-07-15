@@ -1,10 +1,10 @@
 import 'package:bp/providers/enrolled_course_provider.dart';
 import 'package:bp/providers/theme_mode_provider.dart';
+import 'package:bp/screens/base_screen.dart';
 import 'package:bp/screens/discover_screen.dart';
 import 'package:bp/screens/login_screen.dart';
 import 'package:bp/screens/setting_screen.dart';
 import 'package:bp/theme/colors.dart';
-import 'package:bp/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -61,6 +61,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BasePage()));
+              },
+              child: const Text('Home Page'),
+            ),
             // Temporary button to setting page
             TextButton(
               onPressed: () {

@@ -71,6 +71,8 @@ flutter:
     - assets/images/dataScience.jpeg
     - assets/images/cp.jpeg
     - assets/images/undraw_Empty.png
+    - assets/images/home/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
