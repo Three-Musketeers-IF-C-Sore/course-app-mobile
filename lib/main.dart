@@ -1,4 +1,5 @@
 import 'package:bp/providers/enrolled_course_provider.dart';
+import 'package:bp/providers/profile_provider.dart';
 import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/screens/discover_screen.dart';
 import 'package:bp/screens/login_screen.dart';
@@ -12,7 +13,11 @@ import 'screens/about_us_screen.dart';
 import 'screens/profile_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) =>
+        ProfileProvider(), // Provide an instance of ProfileProvider
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
