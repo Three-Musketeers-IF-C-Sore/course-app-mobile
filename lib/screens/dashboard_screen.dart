@@ -1,6 +1,9 @@
-import 'package:bp/providers/theme_mode_provider.dart';
+import 'dart:convert';
+
+import 'package:bp/screens/course_detail_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+// import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -10,10 +13,25 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  List courses = [];
+
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString("assets/json/course.json");
+    final data = json.decode(response) as List;
+    setState(() {
+      courses = data;
+    });
+  }
+
+  @override
+  void initState() {
+    readJson();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final setting = Provider.of<ThemeModeProvider>(context);
+    // final setting = Provider.of<ThemeModeProvider>(context);
     final currentWidth = MediaQuery.of(context).size.width;
 
     return Padding(
@@ -31,11 +49,11 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ),
 
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
 
           SingleChildScrollView(
             child: Column(
-              children: [1,2,3,4,5].map((i) {
+              children: courses.map((i) {
                 return Card(
                   margin: const EdgeInsets.only(bottom: 16),
                   color: const Color.fromRGBO(254, 247, 255, 1),
@@ -51,9 +69,9 @@ class _DashboardPageState extends State<DashboardPage> {
                     children: [
                       ListTile(
                         leading: Image.asset('assets/images/home/course-icon.png'),
-                        title: const Text('Course 1'),
+                        title: Text(i['title']),
                         subtitle: Text(
-                          'Subhead',
+                          i['chapter'].toString(),
                           style: TextStyle(color: Colors.black.withOpacity(0.6)),
                         ),
                       ),
@@ -63,9 +81,9 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
 
                       ListTile(
-                        title: const Text('Course 1'),
+                        title: Text(i['title']),
                         subtitle: Text(
-                          'Subhead',
+                          i['chapter'].toString(),
                           style: TextStyle(color: Colors.black.withOpacity(0.6)),
                         ),
                       ),
@@ -90,14 +108,14 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                       ),
 
-                      const Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor'),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(i['description']),
                       ),
 
                       Container(
                         width: currentWidth,
-                        padding: EdgeInsets.only(right: 16, bottom: 16),
+                        padding: const EdgeInsets.only(right: 16, bottom: 16),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -106,9 +124,9 @@ class _DashboardPageState extends State<DashboardPage> {
                             ElevatedButton(
                               onPressed: () => {}, 
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(103, 80, 164, 1)),
+                                backgroundColor: MaterialStateProperty.all<Color>(const Color.fromRGBO(103, 80, 164, 1)),
                                 padding: MaterialStateProperty.all<EdgeInsets>(
-                                  const EdgeInsets.only(top: 10, bottom: 10, left: 24, right: 24)
+                                  const EdgeInsets.only(top: 0, bottom: 0, left: 24, right: 24)
                                 ),
                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -116,24 +134,39 @@ class _DashboardPageState extends State<DashboardPage> {
                                   )
                                 )
                               ),
-                              child: const Text(
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
+                              child: TextButton(
+                                onPressed: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CourseDetailPage(
+                                        id: i['id'], 
+                                        image: i['image'], 
+                                        title: i['title'], 
+                                        university: i['university'], 
+                                        instructor: i['instructor'], 
+                                        description: i['description'], 
+                                        chapter: i['chapter'], 
+                                        rating: i['rating']
+                                      )
+                                    )
+                                  ),
+                                }, 
+                                child: const Text(
+                                  'Resume',
+                                  style: TextStyle(color: Colors.white),
                                 ),
-                                'Resume',
                               ),
                             ),
                           ],
                         ),
-                      )
-                      
+                      ),
                     ],
                   ),
                 );
               }).toList(),
             ),
-          )
+          ),
         ],
       ),
     );
