@@ -56,12 +56,15 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, 
       appBar: AppBar(
         title: const Text("Register"),
         centerTitle: true,
         backgroundColor: $primary500, // Replace with your desired color
       ),
-      body: Center(
+      body: 
+      SingleChildScrollView(
+        child: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -261,6 +264,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
         ),
+      ),
       ),
     );
   }

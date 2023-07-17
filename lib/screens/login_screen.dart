@@ -43,12 +43,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, 
       appBar: AppBar(
         title: const Text("Login"),
         centerTitle: true,
         backgroundColor: $primary500, // Replace with your desired color
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        child: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -190,6 +192,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
+      ),
       ),
     );
   }
