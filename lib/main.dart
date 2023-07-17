@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           unselectedWidgetColor: Colors.white,
+          fontFamily: 'Plus Jakarta Sans',
         ),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
