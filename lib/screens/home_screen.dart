@@ -20,6 +20,32 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.only(top: 24, right: 16, left: 16),
           child: Column(
             children: [
+              ListTile(
+                leading: SizedBox(
+                  width: 48,
+                  height: 48,
+                  child: Icon(
+                    Icons.account_circle_rounded,
+                    size: 48,
+                    color: setting.textColor,
+                  ),
+                ),
+                title: Text(
+                  'Welcome, Peter',
+                  style: TextStyle(
+                    color: setting.textColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(
+                  'What do you wanna learn today?',
+                  style: TextStyle(
+                    color: setting.textColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+
               Container(
                 margin: const EdgeInsets.only(top: 8),
                 height: 160,
@@ -57,10 +83,11 @@ class _HomePageState extends State<HomePage> {
               Container(
                 margin: const EdgeInsets.only(top: 16.0),
                 child: Column(
-                  children: const [
+                  children: [
                     Text(
                       'Learn anywhere, anytime from your fingertips',
                       style: TextStyle(
+                        color: setting.textColor,
                         fontSize: 28,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Playfair Display'
@@ -71,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
+                        color: setting.textColor,
                       ),
                     ),
                   ],
@@ -84,10 +112,10 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     SizedBox(
                       width: currentWidth,
-                      child: const Text(
+                      child: Text(
                         'Recommended For You',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: setting.textColor,
                           fontSize: 22,
                           fontFamily: 'Plus Jakarta Sans',
                           fontWeight: FontWeight.w700,
@@ -125,15 +153,15 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     SizedBox(
                                         width: 176,
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 4),
+                                          padding: const EdgeInsets.only(top: 4),
                                           child: Text(
                                             'Data Structure and Algorithm',
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: setting.textColor,
                                               fontSize: 14,
                                               fontFamily: 'Plus Jakarta Sans',
                                               fontWeight: FontWeight.w500,
@@ -143,11 +171,11 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     SizedBox(
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 4),
+                                          padding: const EdgeInsets.only(top: 4),
                                           child: Text(
                                             'University of Waterloo',
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: setting.textColor,
                                               fontSize: 12,
                                               fontFamily: 'Plus Jakarta Sans',
                                               fontWeight: FontWeight.w500,
@@ -187,10 +215,10 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     SizedBox(
                       width: currentWidth,
-                      child: const Text(
+                      child: Text(
                         'Most Participants',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: setting.textColor,
                           fontSize: 22,
                           fontFamily: 'Plus Jakarta Sans',
                           fontWeight: FontWeight.w700,
@@ -228,15 +256,15 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     SizedBox(
                                         width: 176,
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 4),
+                                          padding: const EdgeInsets.only(top: 4),
                                           child: Text(
                                             'Data Structure and Algorithm',
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: setting.textColor,
                                               fontSize: 14,
                                               fontFamily: 'Plus Jakarta Sans',
                                               fontWeight: FontWeight.w500,
@@ -246,11 +274,11 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     SizedBox(
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 4),
+                                          padding: const EdgeInsets.only(top: 4),
                                           child: Text(
                                             'University of Waterloo',
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: setting.textColor,
                                               fontSize: 12,
                                               fontFamily: 'Plus Jakarta Sans',
                                               fontWeight: FontWeight.w500,
