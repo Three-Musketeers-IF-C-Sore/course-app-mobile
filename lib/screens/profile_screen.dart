@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _pickImage() async {
     final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
@@ -123,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: screenWidth * 1,
                     height: 335,
                     child: GestureDetector(
-                      onTap: () {
+                      onLongPress: () {
                         _pickImage();
                       },
                       child: _buildColoredBox(),
@@ -131,7 +131,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-              const Indexed(
+              Indexed(
                   index: 5,
                   child: Center(
                     child: Padding(
@@ -140,8 +140,13 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: SizedBox(
                         width: 144,
                         height: 144,
-                        child:
-                            ColoredBox(color: Color.fromRGBO(217, 217, 217, 1)),
+                        child: GestureDetector(
+                          onDoubleTap: () {
+                            _pickImage();
+                          },
+                          child: ColoredBox(
+                              color: Color.fromRGBO(217, 217, 217, 1)),
+                        ),
                       )),
                     ),
                   )),

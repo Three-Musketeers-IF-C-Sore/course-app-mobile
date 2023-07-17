@@ -44,10 +44,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
-        centerTitle: true,
-        backgroundColor: $primary500, // Replace with your desired color
-      ),
+          title: const Text("Login"),
+          centerTitle: true,
+          backgroundColor: $primary500,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MyHomePage(title: ''),
+                ),
+              );
+            },
+          )),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
