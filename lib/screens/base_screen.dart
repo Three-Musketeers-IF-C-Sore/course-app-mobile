@@ -1,4 +1,5 @@
 import 'package:bp/providers/theme_mode_provider.dart';
+import 'package:bp/screens/about_us_screen.dart';
 import 'package:bp/screens/dashboard_screen.dart';
 import 'package:bp/screens/discover_screen.dart';
 import 'package:bp/screens/home_screen.dart';
@@ -87,6 +88,36 @@ class _BasePageState extends State<BasePage> {
                             Padding(padding: EdgeInsets.only(left: 10)),
                             Text(
                               'Settings',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ]
+                        ),
+                      ),
+                  ),
+                ),
+                PopupMenuItem(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => const AboutUsPage()
+                        )
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.info,
+                              color: Colors.black,
+                            ),
+                            Padding(padding: EdgeInsets.only(left: 10)),
+                            Text(
+                              'About Us',
                               style: TextStyle(
                                 color: Colors.black,
                               ),
