@@ -3,6 +3,7 @@ import 'package:bp/screens/dashboard_screen.dart';
 import 'package:bp/screens/discover_screen.dart';
 import 'package:bp/screens/home_screen.dart';
 import 'package:bp/screens/profile_screen.dart';
+import 'package:bp/screens/setting_screen.dart';
 import 'package:bp/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,6 @@ class BasePage extends StatefulWidget {
 }
 
 class _BasePageState extends State<BasePage> {
-
     int _selectedIndex = 0;
 
     void _onItemTapped(int index) {
@@ -67,19 +67,35 @@ class _BasePageState extends State<BasePage> {
             itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem(
-                  value: "add",
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(children: const [
-                      Icon(
-                        Icons.person_add_alt_1,
-                        color: Colors.black,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => const SettingPage()
+                        )
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.settings,
+                              color: Colors.black,
+                            ),
+                            Padding(padding: EdgeInsets.only(left: 10)),
+                            Text(
+                              'Settings',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ]
+                        ),
                       ),
-                      Padding(padding: EdgeInsets.only(left: 10)),
-                      Text('New Contact'),
-                    ]),
                   ),
-                )
+                ),
               ];
             },
             onSelected: (value) {
