@@ -1,9 +1,9 @@
+import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
-import '../main.dart';
+import 'package:bp/theme/typography.dart';
+import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme/colors.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,10 +14,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _name = TextEditingController();
-  TextEditingController _confirmpassword = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _confirmpassword = TextEditingController();
 
   void dispose() {
     _email.dispose();
@@ -55,7 +55,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    final setting = Provider.of<ThemeModeProvider>(context);
+
     return Scaffold(
+      backgroundColor: setting.backgroundColor,
       appBar: AppBar(
         title: const Text("Register"),
         centerTitle: true,
@@ -67,144 +70,146 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const <Widget>[
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 30),
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40,
-                              color: $primary500,
-                            ),
-                          ),
-                        )),
-                  ],
+              Align(
+                alignment: Alignment.centerLeft,
+                child:Text(
+                  'Register',
+                  style: $heading4Bold.copyWith(color: setting.textColor)
                 ),
               ),
-              const SizedBox(height: 60),
+              const Padding(padding: EdgeInsets.all(10)),
               SizedBox(
                 width: 358,
-                height: 40,
                 child: TextField(
                   controller: _name,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
+                    filled: true,
+                    fillColor: setting.isDarkMode ? $primary300 : $primary200,
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: setting.textColor
+                      )
+                    ),
                     labelText: "Name",
-                    labelStyle: TextStyle(
-                      color:
-                          $primary500, // Change the color to your desired color
+                    hintText: "Name",
+                    labelStyle: const TextStyle(
+                      color: $primary500, // Change the color to your desired color
                     ),
                     suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
+                      icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
                       onPressed: () {
                         _name.clear();
                       },
                     ),
-                    focusedBorder: const OutlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color:
-                            $primary500, // Change the color to your desired color
+                        color: setting.textColor,// Change the color to your desired color
                         width: 2.0, // Adjust the width as needed
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 35),
+              const Padding(padding: EdgeInsets.all(10)),
               SizedBox(
                 width: 358,
-                height: 40,
                 child: TextField(
                   controller: _email,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    labelText: "Login",
-                    labelStyle: TextStyle(
-                      color:
-                          $primary500, // Change the color to your desired color
+                    filled: true,
+                    fillColor: setting.isDarkMode ? $primary300 : $primary200,
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: setting.textColor
+                      )
+                    ),
+                    labelText: "Email",
+                    hintText: "Email",
+                    labelStyle: const TextStyle(
+                      color: $primary500, // Change the color to your desired color
                     ),
                     suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
+                      icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
                       onPressed: () {
                         _email.clear();
                       },
                     ),
-                    focusedBorder: const OutlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color:
-                            $primary500, // Change the color to your desired color
+                        color: setting.textColor, // Change the color to your desired color
                         width: 2.0, // Adjust the width as needed
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 35),
+              const Padding(padding: EdgeInsets.all(10)),
               SizedBox(
                 width: 358,
-                height: 40,
                 child: TextField(
                   controller: _password,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
+                    filled: true,
+                    fillColor: setting.isDarkMode ? $primary300 : $primary200,
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: setting.textColor
+                      )
+                    ),
                     labelText: "Password",
-                    labelStyle: TextStyle(
-                      color:
-                          $primary500, // Change the color to your desired color
+                    hintText: "Password",
+                    labelStyle: const TextStyle(
+                      color: $primary500, // Change the color to your desired color
                     ),
                     suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
+                      icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
                       onPressed: () {
                         _password.clear();
                       },
                     ),
-                    focusedBorder: const OutlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color:
-                            $primary500, // Change the color to your desired color
+                        color: setting.textColor, // Change the color to your desired color
                         width: 2.0, // Adjust the width as needed
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 35),
+              const Padding(padding: EdgeInsets.all(10)),
               SizedBox(
                 width: 358,
-                height: 40,
                 child: TextField(
                   controller: _confirmpassword,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
+                    filled: true,
+                    fillColor: setting.isDarkMode ? $primary300 : $primary200,
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: setting.textColor
+                      )
+                    ),
                     labelText: "Password Confirmation",
-                    labelStyle: TextStyle(
-                      color:
-                          $primary500, // Change the color to your desired color
+                    hintText: "Password Confirmation",
+                    labelStyle: const TextStyle(
+                      color: $primary500, // Change the color to your desired color
                     ),
                     suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
+                      icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
                       onPressed: () {
                         _confirmpassword.clear();
                       },
                     ),
-                    focusedBorder: const OutlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color:
-                            $primary500, // Change the color to your desired color
+                        color: setting.textColor, // Change the color to your desired color
                         width: 2.0, // Adjust the width as needed
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 70),
+              const Padding(padding: EdgeInsets.all(10)),
               SizedBox(
                 width: 358,
                 height: 40,
@@ -225,9 +230,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: const Text('Register'),
                 ),
               ),
-              const SizedBox(height: 30),
-              const Text('Already have an account?'),
-              const SizedBox(height: 10),
+              const Padding(padding: EdgeInsets.all(5)),
+              Text('Already have an account?', style: TextStyle(color: setting.textColor),),
+              const Padding(padding: EdgeInsets.all(5)),
               SizedBox(
                 width: 358,
                 height: 40,
@@ -240,7 +245,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     shape: MaterialStateProperty.all<OutlinedBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: $primary500,
                           width: 1,
                         ),

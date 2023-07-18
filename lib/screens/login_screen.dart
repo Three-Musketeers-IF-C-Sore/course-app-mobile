@@ -1,7 +1,10 @@
 import 'package:bp/main.dart';
+import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/screens/register_screen.dart';
 import 'package:bp/theme/typography.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../theme/colors.dart';
 
@@ -13,8 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   @override
   void dispose() {
     _email.dispose();
@@ -42,13 +45,16 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final setting = Provider.of<ThemeModeProvider>(context);
+
     return Scaffold(
+      backgroundColor: setting.backgroundColor,
       appBar: AppBar(
           title: const Text("Login"),
           centerTitle: true,
           backgroundColor: $primary500,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.push(
                 context,
@@ -64,86 +70,84 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const <Widget>[
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 30),
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40,
-                              color: $primary500,
-                            ),
-                          ),
-                        )),
-                  ],
+              Align(
+                alignment: Alignment.centerLeft,
+                child:Text(
+                  'Login',
+                  style: $heading4Bold.copyWith(color: setting.textColor)
                 ),
               ),
-              const SizedBox(height: 60),
+              const Padding(padding: EdgeInsets.all(10)),
               SizedBox(
                 width: 358,
-                height: 40,
                 child: TextField(
                   controller: _email,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    labelText: "Login",
+                    filled: true,
+                    fillColor: setting.isDarkMode ? $primary300 : $primary200,
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: setting.textColor
+                      )
+                    ),
+                    hintText: "Email",
+                    hintStyle: const TextStyle(color: $black),
+                    labelText: "Email",
+                    helperText: "text@gmail.com",
+                    helperStyle: TextStyle(color: setting.textColor),
                     labelStyle: const TextStyle(
                       color:
                           $primary500, // Change the color to your desired color
                     ),
                     suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
+                      icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
                       onPressed: () {
                         _email.clear();
                       },
                     ),
-                    focusedBorder: const OutlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color:
-                            $primary500, // Change the color to your desired color
+                        color: setting.textColor, // Change the color to your desired color
                         width: 2.0, // Adjust the width as needed
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 35),
+              const Padding(padding: EdgeInsets.all(10)),
               SizedBox(
                 width: 358,
-                height: 40,
                 child: TextField(
                   controller: _password,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
+                    filled: true,
+                    fillColor: setting.isDarkMode ? $primary300 : $primary200,
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: setting.textColor
+                      )
+                    ),
                     labelText: "Password",
+                    hintText: "Password",
                     labelStyle: const TextStyle(
-                      color:
-                          $primary500, // Change the color to your desired color
+                      color: $primary500, // Change the color to your desired color
                     ),
                     suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
+                      icon: const FaIcon(FontAwesomeIcons.circleXmark, color: $black,),
                       onPressed: () {
                         _password.clear();
                       },
                     ),
-                    focusedBorder: const OutlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color:
-                            $primary500, // Change the color to your desired color
+                        color: setting.textColor, // Change the color to your desired color
                         width: 2.0, // Adjust the width as needed
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 70),
+              const Padding(padding: EdgeInsets.all(15)),
               SizedBox(
                 width: 358,
                 height: 40,
@@ -164,9 +168,9 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text('Login'),
                 ),
               ),
-              const SizedBox(height: 30),
-              const Text('Not Registered?'),
-              const SizedBox(height: 10),
+              const Padding(padding: EdgeInsets.all(5)),
+              Text('Not Registered?', style: TextStyle(color: setting.textColor),),
+              const Padding(padding: EdgeInsets.all(5)),
               SizedBox(
                 width: 358,
                 height: 40,

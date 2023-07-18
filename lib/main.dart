@@ -5,7 +5,6 @@ import 'package:bp/screens/discover_screen.dart';
 import 'package:bp/screens/login_screen.dart';
 import 'package:bp/screens/setting_screen.dart';
 import 'package:bp/theme/colors.dart';
-import 'package:bp/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +15,7 @@ void main() {
   runApp(ChangeNotifierProvider(
     create: (context) =>
         ProfileProvider(), // Provide an instance of ProfileProvider
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
