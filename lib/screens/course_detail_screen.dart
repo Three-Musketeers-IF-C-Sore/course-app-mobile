@@ -98,7 +98,8 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                     title: Text("Chapter ${index+1}", style: TextStyle(color: setting.textColor),),
                     trailing: IconButton(
                       onPressed: enrolledCourseProvider.isEnrolled(widget.id) ? () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChapterDetailPage(image: widget.image, title: widget.title, chapter: index)))
-                      : () {ScaffoldMessenger.of(context).showMaterialBanner(
+                      : () {ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+                            ScaffoldMessenger.of(context).showMaterialBanner(
                             MaterialBanner(
                             backgroundColor: setting.textColor,
                             content: Text('You need to enroll first!', style: TextStyle(color: setting.isDarkMode ? $black : $white),),
