@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:bp/providers/enrolled_course_provider.dart';
 import 'package:bp/screens/course_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -33,6 +35,8 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     // final setting = Provider.of<ThemeModeProvider>(context);
     final currentWidth = MediaQuery.of(context).size.width;
+    final enrolledCourseProvider = Provider.of<EnrolledCourseProvider>(context);
+    final enrolledCourses = enrolledCourseProvider.getEnrolledCourses();
 
     return Padding(
       padding: const EdgeInsets.only(top: 24, right: 16, left: 16),
@@ -53,7 +57,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
           SingleChildScrollView(
             child: Column(
-              children: courses.map((i) {
+              children: enrolledCourses.map((i) {
                 return Card(
                   margin: const EdgeInsets.only(bottom: 16),
                   color: const Color.fromRGBO(254, 247, 255, 1),
@@ -77,7 +81,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                       SizedBox(
                         width: currentWidth,
-                        child: Image.asset('assets/images/home/course-image.png'),
+                        child: Image.asset('assets/images/${i["image"]}', width: 100,),
                       ),
 
                       ListTile(
