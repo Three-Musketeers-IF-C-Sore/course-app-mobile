@@ -47,6 +47,6 @@
         "instructor": "Prof. Andi",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae rem dolore nam doloribus accusantium mollitia maxime quidem ab odit, provident vitae ducimus sequi dicta? Corrupti, nemo ad quos, voluptatum officia error maxime exercitationem, dignissimos sapiente fuga qui porro accusantium temporibus dolorem distinctio iure. \n\nFugit veritatis alias corporis quidem eaque eius deleniti soluta? Saepe vel architecto enim eum facere placeat itaque? Officiis cum totam nobis.",
         "chapter": 5,
-        "rating": 5
+        "rating": 5.0
     }
 ]

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bp/theme/typography.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../theme/colors.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _name = TextEditingController();
   final TextEditingController _confirmpassword = TextEditingController();
 
+  @override
   void dispose() {
     _email.dispose();
     super.dispose();
@@ -58,13 +60,15 @@ class _RegisterPageState extends State<RegisterPage> {
     final setting = Provider.of<ThemeModeProvider>(context);
 
     return Scaffold(
-      backgroundColor: setting.backgroundColor,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Register"),
         centerTitle: true,
         backgroundColor: $primary500, // Replace with your desired color
       ),
-      body: Center(
+      body:
+      SingleChildScrollView(
+        child: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -266,6 +270,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
         ),
+      ),
       ),
     );
   }

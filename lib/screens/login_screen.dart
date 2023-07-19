@@ -1,7 +1,5 @@
 import 'package:bp/main.dart';
-import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/screens/register_screen.dart';
-import 'package:bp/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -37,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const MyHomePage(title: ''),
+          builder: (context) => const BasePage(),
         ),
       );
     }
@@ -204,6 +202,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
+      ),
       ),
     );
   }

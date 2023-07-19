@@ -68,15 +68,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     final setting = Provider.of<ThemeModeProvider>(context);
     final currentWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      backgroundColor: setting.backgroundColor,
-      appBar: AppBar(
-        title: const Text('Courses'),
-        centerTitle: true,
-        backgroundColor: $primary500,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
+    return Padding(
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -129,7 +121,22 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   },
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CourseDetailPage(id: recommend[index]['id'], image: recommend[index]['image'], title: recommend[index]['title'], university: recommend[index]['university'], instructor: recommend[index]['instructor'], description: recommend[index]['description'], chapter: recommend[index]['chapter'],rating: recommend[index]['rating']))),
+                      onTap: () => Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => 
+                            CourseDetailPage(
+                              id: recommend[index]['id'], 
+                              image: recommend[index]['image'], 
+                              title: recommend[index]['title'], 
+                              university: recommend[index]['university'], 
+                              instructor: recommend[index]['instructor'], 
+                              description: recommend[index]['description'], 
+                              chapter: recommend[index]['chapter'],
+                              rating: recommend[index]['rating']
+                            )
+                        )
+                      ),
                       child: Card(
                         color: $white,
                         shadowColor: $black,
@@ -344,8 +351,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
               ],
             ],
           ),
-        ),
-      ),
-    );
+        );
   }
 }
