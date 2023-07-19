@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:course_app/providers/enrolled_course_provider.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
 import 'package:course_app/screens/course_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,6 +38,7 @@ class _DashboardPageState extends State<DashboardPage> {
     final currentWidth = MediaQuery.of(context).size.width;
     final enrolledCourseProvider = Provider.of<EnrolledCourseProvider>(context);
     final enrolledCourses = enrolledCourseProvider.getEnrolledCourses();
+    final setting = Provider.of<ThemeModeProvider>(context);
 
     return Padding(
       padding: const EdgeInsets.only(top: 24, right: 16, left: 16),
@@ -44,11 +46,12 @@ class _DashboardPageState extends State<DashboardPage> {
         children: [
           SizedBox(
             width: currentWidth,
-            child: const Text(
+            child: Text(
               'My Courses',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
+                color: setting.textColor
               ),
             ),
           ),

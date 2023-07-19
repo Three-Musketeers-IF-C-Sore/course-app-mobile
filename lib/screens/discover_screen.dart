@@ -79,7 +79,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 onChanged: (keyword) {
                   updateDataByKeyword(_searchController.text);
                 },
-                style: TextStyle(color: setting.textColor),
+                style: const TextStyle(color: $black),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: setting.isDarkMode ? $primary300 : _color,
@@ -141,7 +141,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                         color: $white,
                         shadowColor: $black,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -213,51 +213,58 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CourseDetailPage(id: courses[index]['id'], image: courses[index]['image'], title: courses[index]['title'], university: courses[index]['university'], instructor: courses[index]['instructor'], description: courses[index]['description'], chapter: courses[index]['chapter'],rating: courses[index]['rating']))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/${courses[index]["image"]}', width: 100,),
-                          const Padding(padding: EdgeInsets.only(left: 10)),
-                          Column(
+                      child: Card(
+                        color: $white,
+                        shadowColor: $black,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                width: currentWidth*0.5,
-                                child: FittedBox(child: Text(courses[index]["title"], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: $black),),)
-                              ),  
-                              Text(courses[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                              Text(courses[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                              Row(children: [
-                                if((courses[index]["rating"]).round() == courses[index]["rating"])...[
-                                  for(int i=0; i<courses[index]["rating"]; i++) ...[
-                                    const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                  ],
-                                  for(int i=0; i<5-courses[index]["rating"]; i++) ...[
-                                    const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                  ],
-                                ] else if((courses[index]["rating"]).round() > (courses[index]["rating"])) ... [
-                                  for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
-                                    const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                  ],
-                                  const Icon(Icons.star_half_rounded, color: Colors.yellow,),
-                                  for(int i=0; i<5-(courses[index]["rating"]).round(); i++) ...[
-                                    const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                  ],
-                                ] else if((courses[index]["rating"]).round() < (courses[index]["rating"]))...[
-                                  for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
-                                    const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                  ],
-                                  for(int i=0; i<5-(courses[index]["rating"]).floor(); i++) ...[
-                                    const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                  ],
-                                ],                  
-                                Text("(${courses[index]['rating']})", style: const TextStyle(color: $black),),
-                              ],),
+                              Image.asset('assets/images/${courses[index]["image"]}', width: 100,),
+                              const Padding(padding: EdgeInsets.only(left: 10)),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: currentWidth*0.5,
+                                    child: FittedBox(child: Text(courses[index]["title"], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: $black),),)
+                                  ),  
+                                  Text(courses[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                  Text(courses[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                  Row(children: [
+                                    if((courses[index]["rating"]).round() == courses[index]["rating"])...[
+                                      for(int i=0; i<courses[index]["rating"]; i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      for(int i=0; i<5-courses[index]["rating"]; i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ] else if((courses[index]["rating"]).round() > (courses[index]["rating"])) ... [
+                                      for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      const Icon(Icons.star_half_rounded, color: Colors.yellow,),
+                                      for(int i=0; i<5-(courses[index]["rating"]).round(); i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ] else if((courses[index]["rating"]).round() < (courses[index]["rating"]))...[
+                                      for(int i=0; i<(courses[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                      ],
+                                      for(int i=0; i<5-(courses[index]["rating"]).floor(); i++) ...[
+                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                      ],
+                                    ],                  
+                                    Text("(${courses[index]['rating']})", style: const TextStyle(color: $black),),
+                                  ],),
+                                ],
+                              )
                             ],
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -298,51 +305,58 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CourseDetailPage(id: related[index]['id'], image: related[index]['image'], title: related[index]['title'], university: related[index]['university'], instructor: related[index]['instructor'], description: related[index]['description'], chapter: related[index]['chapter'],rating: related[index]['rating']))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset('assets/images/${related[index]["image"]}', width: 100,),
-                              const Padding(padding: EdgeInsets.only(left: 10)),
-                              Column(
+                          child: Card(
+                            color: $white,
+                            shadowColor: $black,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(
-                                    width: currentWidth*0.5,
-                                    child: FittedBox(child: Text(related[index]["title"], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: $black),),)
-                                  ), 
-                                  Text(related[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                                  Text(related[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
-                                  Row(children: [
-                                    if((related[index]["rating"]).round() == related[index]["rating"])...[
-                                      for(int i=0; i<related[index]["rating"]; i++) ...[
-                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                      ],
-                                      for(int i=0; i<5-related[index]["rating"]; i++) ...[
-                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                      ],
-                                    ] else if((related[index]["rating"]).round() > (related[index]["rating"])) ... [
-                                      for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
-                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                      ],
-                                      const Icon(Icons.star_half_rounded, color: Colors.yellow,),
-                                      for(int i=0; i<5-(related[index]["rating"]).round(); i++) ...[
-                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                      ],
-                                    ] else if((related[index]["rating"]).round() < (related[index]["rating"]))...[
-                                      for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
-                                        const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
-                                      ],
-                                      for(int i=0; i<5-(related[index]["rating"]).floor(); i++) ...[
-                                        const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
-                                      ],
-                                    ],                  
-                                    Text("(${related[index]['rating']})", style: const TextStyle(color: $black),),
-                                  ],),
+                                  Image.asset('assets/images/${related[index]["image"]}', width: 100,),
+                                  const Padding(padding: EdgeInsets.only(left: 10)),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: currentWidth*0.5,
+                                        child: FittedBox(child: Text(related[index]["title"], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: $black),),)
+                                      ), 
+                                      Text(related[index]["university"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                      Text(related[index]["instructor"], style: const TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),),
+                                      Row(children: [
+                                        if((related[index]["rating"]).round() == related[index]["rating"])...[
+                                          for(int i=0; i<related[index]["rating"]; i++) ...[
+                                            const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                          ],
+                                          for(int i=0; i<5-related[index]["rating"]; i++) ...[
+                                            const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                          ],
+                                        ] else if((related[index]["rating"]).round() > (related[index]["rating"])) ... [
+                                          for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
+                                            const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                          ],
+                                          const Icon(Icons.star_half_rounded, color: Colors.yellow,),
+                                          for(int i=0; i<5-(related[index]["rating"]).round(); i++) ...[
+                                            const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                          ],
+                                        ] else if((related[index]["rating"]).round() < (related[index]["rating"]))...[
+                                          for(int i=0; i<(related[index]["rating"]).floor(); i++) ...[
+                                            const Icon(Icons.star_rate_rounded, color: Colors.yellow,)
+                                          ],
+                                          for(int i=0; i<5-(related[index]["rating"]).floor(); i++) ...[
+                                            const Icon(Icons.star_outline_rounded, color: Colors.yellow,)
+                                          ],
+                                        ],                  
+                                        Text("(${related[index]['rating']})", style: const TextStyle(color: $black),),
+                                      ],),
+                                    ],
+                                  )
                                 ],
-                              )
-                            ],
+                              ),
+                            ),
                           ),
                         );
                       },
