@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:indexed/indexed.dart';
 import '../theme/colors.dart';
 import '../theme/typography.dart';
@@ -24,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _aboutController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
+  @override
   void initState() {
     super.initState();
     _nameController.text = _textName;
@@ -96,8 +96,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: [
                 Row(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'About',
                       style: $heading5Regular,
                     ),

@@ -1,9 +1,6 @@
 import 'package:bp/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../main.dart';
 import '../theme/colors.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,11 +11,12 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _name = TextEditingController();
-  TextEditingController _confirmpassword = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _confirmpassword = TextEditingController();
 
+  @override
   void dispose() {
     _email.dispose();
     super.dispose();
@@ -100,7 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: "Name",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color:
                           $primary500, // Change the color to your desired color
                     ),
@@ -129,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: "Login",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color:
                           $primary500, // Change the color to your desired color
                     ),
@@ -158,7 +156,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: "Password",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color:
                           $primary500, // Change the color to your desired color
                     ),
@@ -187,7 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: "Password Confirmation",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color:
                           $primary500, // Change the color to your desired color
                     ),
@@ -243,7 +241,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     shape: MaterialStateProperty.all<OutlinedBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: $primary500,
                           width: 1,
                         ),
