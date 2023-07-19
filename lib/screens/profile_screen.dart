@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../providers/profile_provider.dart';
 import '../theme/colors.dart';
 import '../theme/typography.dart';
+import 'base_screen.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -67,18 +68,20 @@ class _ProfilePageState extends State<ProfilePage> {
     final setting = Provider.of<ThemeModeProvider>(context);
 
     return Padding(
-        padding: const EdgeInsets.only(left: 0, top: 5),
-        child:Text(
-            userProfileProvider.firstName == '' ? "Jonathan ${userProfileProvider.lastName}" : "${userProfileProvider.firstName} ${userProfileProvider.lastName}",
-            textAlign: TextAlign.center,
-            style: $heading5Bold.copyWith(color: setting.textColor),
-          ),
+      padding: const EdgeInsets.only(left: 0, top: 5),
+      child: Text(
+        userProfileProvider.firstName == ''
+            ? "Jonathan ${userProfileProvider.lastName}"
+            : "${userProfileProvider.firstName} ${userProfileProvider.lastName}",
+        textAlign: TextAlign.center,
+        style: $heading5Bold.copyWith(color: setting.textColor),
+      ),
     );
   }
 
   Widget aboutEditText() {
     double screenWidth = MediaQuery.of(context).size.width;
-    final userProfileProvider = Provider.of<ProfileProvider>(context);  
+    final userProfileProvider = Provider.of<ProfileProvider>(context);
     final setting = Provider.of<ThemeModeProvider>(context);
     return Padding(
         padding: const EdgeInsets.only(left: 30, top: 30, bottom: 30),
@@ -101,7 +104,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Text(
                         userProfileProvider.about,
                         textAlign: TextAlign.justify,
-                        style: $caption2Light.copyWith(color: setting.textColor),
+                        style:
+                            $caption2Light.copyWith(color: setting.textColor),
                       ),
                     ),
                   ],
@@ -117,10 +121,20 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: setting.backgroundColor,
       appBar: AppBar(
-        title: const Text("Profile"),
-        centerTitle: true,
-        backgroundColor: $primary500,
-      ),
+          title: const Text("Profile"),
+          centerTitle: true,
+          backgroundColor: $primary500,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BasePage(),
+                ),
+              );
+            },
+          )),
       body: SingleChildScrollView(
         child: Column(children: [
           Indexer(
@@ -129,66 +143,60 @@ class _ProfilePageState extends State<ProfilePage> {
                 index: 0,
                 child: SingleChildScrollView(
                   child: Center(
-                    child: Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        SizedBox(
-                          width: screenWidth * 1,
-                          height: 335,
-                          child: _buildColoredBox(),
-                        ),
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: $primary500,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                              color: $white,
-                            ),
-                            onPressed: () {
-                            _pickImageBackground();
-                            },
+                    child: Stack(alignment: Alignment.bottomRight, children: [
+                      SizedBox(
+                        width: screenWidth * 1,
+                        height: 335,
+                        child: _buildColoredBox(),
+                      ),
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundColor: $primary500,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.edit,
+                            color: $white,
                           ),
-                        )
-                      ]
-                    ),
+                          onPressed: () {
+                            _pickImageBackground();
+                          },
+                        ),
+                      )
+                    ]),
                   ),
                 ),
               ),
               Indexed(
-                  index: 5,
-                  child: Center(
-                    child: Padding(
+                index: 5,
+                child: Center(
+                  child: Padding(
                       padding: const EdgeInsets.only(top: 283),
                       child: ClipOval(
-                          child: Stack(
-                            children: [
-                              SizedBox(
-                                width: 140,
-                                height: 140,
-                                child: _profilePic(),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 80, top: 80),
-                                child: CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: $primary500,
-                                  child: IconButton(
-                                    icon: const Icon(
-                                      Icons.edit,
-                                      color: $white,
-                                    ),
-                                    onPressed: () {
-                                    _pickImage();
-                                    },
-                                  ),
-                                ),
-                              )
-                            ]
-                          ))
+                          child: Stack(children: [
+                        SizedBox(
+                          width: 140,
+                          height: 140,
+                          child: _profilePic(),
                         ),
-                    ),
-                  ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 80, top: 80),
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundColor: $primary500,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.edit,
+                                color: $white,
+                              ),
+                              onPressed: () {
+                                _pickImage();
+                              },
+                            ),
+                          ),
+                        )
+                      ]))),
+                ),
+              ),
               Indexed(
                   index: 0,
                   child: Center(
@@ -211,7 +219,10 @@ class _ProfilePageState extends State<ProfilePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromRGBO(91, 80, 216, 0.8),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile_Edit_Page()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const Profile_Edit_Page()));
         },
         child: const Icon(Icons.edit),
       ),
