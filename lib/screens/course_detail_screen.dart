@@ -1,8 +1,8 @@
-import 'package:bp/providers/enrolled_course_provider.dart';
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/screens/chapter_detail_screen.dart';
-import 'package:bp/theme/colors.dart';
-import 'package:bp/theme/typography.dart';
+import 'package:course_app/providers/enrolled_course_provider.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/screens/chapter_detail_screen.dart';
+import 'package:course_app/theme/colors.dart';
+import 'package:course_app/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

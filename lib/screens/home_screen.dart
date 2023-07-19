@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/screens/course_detail_screen.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/screens/course_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

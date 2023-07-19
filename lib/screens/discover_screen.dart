@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/theme/colors.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:bp/screens/course_detail_screen.dart';
+import 'package:course_app/screens/course_detail_screen.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});

@@ -1,7 +1,7 @@
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/screens/base_screen.dart';
-import 'package:bp/screens/register_screen.dart';
-import 'package:bp/theme/typography.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/screens/base_screen.dart';
+import 'package:course_app/screens/register_screen.dart';
+import 'package:course_app/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

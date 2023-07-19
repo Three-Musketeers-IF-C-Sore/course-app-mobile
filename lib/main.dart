@@ -1,7 +1,7 @@
-import 'package:bp/providers/enrolled_course_provider.dart';
-import 'package:bp/providers/profile_provider.dart';
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/screens/register_screen.dart';
+import 'package:course_app/providers/enrolled_course_provider.dart';
+import 'package:course_app/providers/profile_provider.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

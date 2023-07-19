@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/screens/profile_edit_screen.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/screens/profile_edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:indexed/indexed.dart';

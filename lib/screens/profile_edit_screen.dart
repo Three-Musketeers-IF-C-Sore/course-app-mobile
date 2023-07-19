@@ -1,7 +1,7 @@
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/theme/typography.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/theme/typography.dart';
 import 'package:intl/intl.dart';
-import 'package:bp/screens/profile_screen.dart';
+import 'package:course_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/profile_provider.dart';

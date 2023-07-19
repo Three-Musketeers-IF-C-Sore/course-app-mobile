@@ -1,11 +1,11 @@
-import 'package:bp/providers/theme_mode_provider.dart';
-import 'package:bp/screens/about_us_screen.dart';
-import 'package:bp/screens/dashboard_screen.dart';
-import 'package:bp/screens/discover_screen.dart';
-import 'package:bp/screens/home_screen.dart';
-import 'package:bp/screens/profile_screen.dart';
-import 'package:bp/screens/setting_screen.dart';
-import 'package:bp/theme/colors.dart';
+import 'package:course_app/providers/theme_mode_provider.dart';
+import 'package:course_app/screens/about_us_screen.dart';
+import 'package:course_app/screens/dashboard_screen.dart';
+import 'package:course_app/screens/discover_screen.dart';
+import 'package:course_app/screens/home_screen.dart';
+import 'package:course_app/screens/profile_screen.dart';
+import 'package:course_app/screens/setting_screen.dart';
+import 'package:course_app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
