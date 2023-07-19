@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bp/providers/theme_mode_provider.dart';
 import 'package:bp/screens/profile_edit_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:indexed/indexed.dart';
 import 'package:provider/provider.dart';
 import '../providers/profile_provider.dart';
@@ -28,15 +29,6 @@ class _ProfilePageState extends State<ProfilePage> {
         _chosenImage = File(pickedFile.path);
       });
     }
-
-  final TextEditingController _aboutController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _nameController.text = _textName;
-    _aboutController.text = _textAbout;
   }
 
   void _pickImage() async {
@@ -86,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget aboutEditText() {
     double screenWidth = MediaQuery.of(context).size.width;
-    final userProfileProvider = Provider.of<ProfileProvider>(context);
+    final userProfileProvider = Provider.of<ProfileProvider>(context);  
     final setting = Provider.of<ThemeModeProvider>(context);
     return Padding(
         padding: const EdgeInsets.only(left: 30, top: 30, bottom: 30),
